@@ -10,4 +10,8 @@
   <view class="usermotto">
     <text class="user-motto">{{motto}}</text>
   </view>
+  <view class="usermotto1">
+    <text class="user-motto1">{{motto1}}</text>
+  </view>
+  <button bindtap="gotoImgDemo"> 选择图片 </button>
 </view>
