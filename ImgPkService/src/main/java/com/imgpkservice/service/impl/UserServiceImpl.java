@@ -1,10 +1,14 @@
 package com.imgpkservice.service.impl;
 
 import java.io.BufferedOutputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,7 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.github.pagehelper.PageHelper;
 import com.imgpkservice.bean.PictureInfo;
 import com.imgpkservice.bean.User;
-import com.imgpkservice.dao.UserMapper;
+import com.imgpkservice.dao.UserInfoDao;
 import com.imgpkservice.service.UserService;
 
 /**
@@ -27,12 +31,45 @@ import com.imgpkservice.service.UserService;
 public class UserServiceImpl implements UserService {
 
 	@Autowired
-	private UserMapper userMapper;// 这里会报错，但是并不会影响
+	private UserInfoDao userInfoDao;// 这里会报错，但是并不会影响
 
 	@Override
 	public int addUser(User user) {
+		downloadPicture(user);
+		return userInfoDao.saveUserInfo(user);
+	}
 
-		return userMapper.insertSelective(user);
+	/**
+	 * 根据url下载图片
+	 * 
+	 * @param urlList
+	 * @param path
+	 */
+	private void downloadPicture(User user) {
+		URL url = null;
+		try {
+			url = new URL(user.getImgPath());
+			DataInputStream dataInputStream = new DataInputStream(url.openStream());
+
+			String path = "D:/Files/" + user.getUserId() + "/";
+			String storePath = path + user.getUserId() + ".jpg";
+			FileOutputStream fileOutputStream = new FileOutputStream(new File(storePath));
+			ByteArrayOutputStream output = new ByteArrayOutputStream();
+
+			byte[] buffer = new byte[1024];
+			int length;
+
+			while ((length = dataInputStream.read(buffer)) > 0) {
+				output.write(buffer, 0, length);
+			}
+			fileOutputStream.write(output.toByteArray());
+			dataInputStream.close();
+			fileOutputStream.close();
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/*
@@ -43,7 +80,7 @@ public class UserServiceImpl implements UserService {
 	public List<User> findAllUser(int pageNum, int pageSize) {
 		// 将参数传给这个方法就可以实现物理分页了，非常简单。
 		PageHelper.startPage(pageNum, pageSize);
-		return userMapper.selectAllUser();
+		return userInfoDao.queryAllUser();
 	}
 
 	@Override
@@ -63,7 +100,7 @@ public class UserServiceImpl implements UserService {
 				String finalName = file.getOriginalFilename();
 				String storePath = path + file.getOriginalFilename();
 				String relationPath = "/" + userId + "/" + file.getOriginalFilename();
-				
+
 				BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(new File(storePath)));
 				System.out.println(file.getName());
 				out.write(file.getBytes());
@@ -75,7 +112,7 @@ public class UserServiceImpl implements UserService {
 				pictureInfo.setRelationPath(relationPath);
 				pictureInfo.setStorePath(storePath);
 				pictureInfo.setUserId(userId);
-				userMapper.savePictureInfo(pictureInfo);
+				userInfoDao.savePictureInfo(pictureInfo);
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 				return "上传失败," + e.getMessage();
@@ -93,11 +130,10 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public String queryImgPath(String filePath) {
-		Map<String,Object> filters = new HashMap<String,Object>();
+		Map<String, Object> filters = new HashMap<String, Object>();
 		filters.put("picId", filePath);
-		List<PictureInfo> pictureInfos = userMapper.queryPictureInfoById(filters);
-		if(CollectionUtils.isNotEmpty(pictureInfos))
-		{
+		List<PictureInfo> pictureInfos = userInfoDao.queryPictureInfoById(filters);
+		if (CollectionUtils.isNotEmpty(pictureInfos)) {
 			return pictureInfos.get(0).getStorePath();
 		}
 		return null;

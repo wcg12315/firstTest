@@ -18,6 +18,7 @@ App({
     // 登录
     wx.login({
       success: res => {
+        let that = this
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
         wx.request({
           //获取openid接口
@@ -30,11 +31,10 @@ App({
           },
           method: 'GET',
           success: function (res) {
-            console.log(res.data)
             OPEN_ID = res.data.openid;//获取到的openid
             SESSION_KEY = res.data.session_key;//获取到session_key
-            console.log(OPEN_ID.length)
-            console.log(SESSION_KEY.length)
+            that.globalData.OPEN_ID = OPEN_ID;
+            that.globalData.SESSION_KEY = SESSION_KEY;
           }
         });
       }
@@ -47,14 +47,30 @@ App({
           wx.getUserInfo({
             success: res => {
               // 可以将 res 发送给后台解码出 unionId
-              this.globalData.userInfo = res.userInfo
-              this.globalData.OPEN_ID = OPEN_ID;//获取到的openid
-              this.globalData.SESSION_KEY = SESSION_KEY;//获取到session_key
+              this.globalData.userInfo = res.userInfo;
 
               // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
               // 所以此处加入 callback 以防止这种情况
               if (this.userInfoReadyCallback) {
-                this.userInfoReadyCallback(res)
+                this.userInfoReadyCallback(res);
+
+                var userInfoObj = {};
+                userInfoObj.userId = this.globalData.OPEN_ID;
+                userInfoObj.avatarUrl = this.globalData.userInfo.avatarUrl;
+                userInfoObj.nickName = this.globalData.userInfo.nickName;
+                //更新用户信息
+                wx.request({
+                  //获取openid接口
+                  url: 'http://127.0.0.1:8080/ImgPkService/user/saveUserInfo',
+                  data: { userId: userInfoObj.userId, avatarUrl: userInfoObj.avatarUrl, nickName:userInfoObj.nickName},
+                  method:'POST',
+                  header: {
+                    "content-type": "application/x-www-form-urlencoded"
+                  },
+                  success: function (res) {
+                    console.log(res.data)
+                  }
+                });
               }
             }
           });

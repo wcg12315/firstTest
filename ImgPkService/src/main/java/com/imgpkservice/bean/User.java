@@ -1,19 +1,17 @@
 package com.imgpkservice.bean;
 
 public class User {
-	private Integer userId;
+	private String userId;
 
 	private String userName;
 
-	private String password;
+	private String imgPath;
 
-	private String phone;
-
-	public Integer getUserId() {
+	public String getUserId() {
 		return userId;
 	}
 
-	public void setUserId(Integer userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 
@@ -22,22 +20,14 @@ public class User {
 	}
 
 	public void setUserName(String userName) {
-		this.userName = userName == null ? null : userName.trim();
+		this.userName = userName;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getImgPath() {
+		return imgPath;
 	}
 
-	public void setPassword(String password) {
-		this.password = password == null ? null : password.trim();
-	}
-
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone == null ? null : phone.trim();
+	public void setImgPath(String imgPath) {
+		this.imgPath = imgPath;
 	}
 }

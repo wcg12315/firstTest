@@ -35,8 +35,12 @@ public class UserController {
 	}
 
 	@ResponseBody
-	@RequestMapping(method = RequestMethod.POST, value = "/add", produces = { "application/json;charset=UTF-8" })
-	public int addUser(User user) {
+	@RequestMapping(method = RequestMethod.POST, value = "/saveUserInfo", produces = { "application/json;charset=UTF-8" })
+	public int addUser(HttpServletRequest request) {
+	    User user = new User();
+	    user.setUserId(request.getParameter("userId"));
+	    user.setImgPath(request.getParameter("avatarUrl"));
+	    user.setUserName(request.getParameter("nickName"));
 		return userService.addUser(user);
 	}
 
