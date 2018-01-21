@@ -27,6 +27,10 @@ spring:
         testOnReturn: false
         poolPreparedStatements: true
         maxOpenPreparedStatements: 20
+    http:
+        multipart:
+            maxFileSize: 100Mb
+            maxRequestSize: 1000Mb
 mybatis:
   mapper-locations: classpath:mapping/*.xml
   type-aliases-package: com.imgpkservice.dao

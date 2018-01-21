@@ -2,7 +2,8 @@
   "pages":[
     "pages/index/index",
     "pages/logs/logs",
-    "pages/imgShow/imgShow"
+    "pages/imgShow/imgShow",
+    "pages/showMyDetails/showMyDetails"
   ],
   "window":{
     "backgroundTextStyle":"light",

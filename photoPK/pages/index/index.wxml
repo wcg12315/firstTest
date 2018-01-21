@@ -7,11 +7,6 @@
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
     </block>
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>
-  <view class="usermotto1">
-    <text class="user-motto1">{{motto1}}</text>
-  </view>
+  <button bindtap="showMyDetails"> 我的评分 </button>
   <button bindtap="gotoImgDemo"> 选择图片 </button>
 </view>

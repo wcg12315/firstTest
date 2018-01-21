@@ -4,8 +4,6 @@ const app = getApp()
 
 Page({
   data: {
-    motto: 'Hello World',
-    motto1: 'Hello World1',
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
@@ -19,7 +17,13 @@ Page({
   //事件处理函数
   gotoImgDemo: function () {
     wx.navigateTo({
-      url: '/imgShow/imgShow'
+      url: '../imgShow/imgShow'
+    })
+  },
+  //事件处理函数
+  showMyDetails: function () {
+    wx.navigateTo({
+      url: '../showMyDetails/showMyDetails'
     })
   },
   onLoad: function () {
@@ -62,7 +66,7 @@ Page({
     return {
       title: '头像PK',
       desc: '好友头像大比拼，谁是最佳!',
-      path: '/index/index'
+      path: 'pages/index/index'
     }
   }
 })
