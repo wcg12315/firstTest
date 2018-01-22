@@ -4,6 +4,8 @@
 	<sql id="Base_Column_List">
 		userId, userName, imgPath
 	</sql>
+	
+	<!-- 获取单个用户信息 -->
 	<select id="queryUserInfoByUserId" resultType="com.imgpkservice.bean.User"
 		parameterType="java.lang.Integer">
 		select
@@ -12,23 +14,27 @@
 		where userId = #{userId}
 	</select>
 	
+	<!-- 查询所有用户信息 -->
 	<select id="queryAllUser" resultType="com.imgpkservice.bean.User">
 		select
 		<include refid="Base_Column_List" />
 		from t_user
 	</select>
-	
+
+	<!-- 删除用户信息 -->
 	<delete id="deleteUserInfoByUserId">
 		delete from t_user
 		where user_id = #{userId}
 	</delete>
-	
+
+	<!-- 保存用户信息信息 -->
 	<insert id="saveUserInfo">
 		replace into t_user (userId, userName, imgPath)
 		values (#{userId}, #{userName},
 		#{imgPath})
 	</insert>
-	
+
+	<!-- 保存照片信息 -->
 	<update id="savePictureInfo">
 		replace into t_user_pkimg
 		(picId, userId, storePath,
@@ -37,13 +43,64 @@
 		#{storePath},
 		#{relationPath})
 	</update>
-	
-	<!-- 这个方法是我自己加的 -->
+
+	<!-- 获取照片数据 -->
 	<select id="queryPictureInfoById" resultType="com.imgpkservice.bean.PictureInfo">
 		select
-		picId, userId, storePath,
+		picId,
+		userId, storePath,
 		relationPath
 		from t_user_pkimg
 		where picId = #{picId}
+	</select>
+
+	<!-- 保存评分结果 -->
+	<update id="savePictureScoreInfo">
+		replace into t_picture_score
+		(picId, colour, shadow,
+		size, activity, theme, multiple)
+		values (#{picId}, #{colour},
+		#{shadow},
+		#{size},
+		#{activity},
+		#{theme},
+		#{multiple})
+	</update>
+
+	<!-- 获取排行榜信息 -->
+	<select id="queryAllRankInfos" resultType="com.imgpkservice.bean.PictureScoreInfo">
+		select
+		scoreInfo.picId, colour, shadow,
+		size, activity, theme,
+		multiple,sum(colour+shadow+size+activity+theme+multiple) as
+		totalScore,
+		userName,
+		concat('http://127.0.0.1:8080/ImgPkService/user/',scoreInfo.picId) as imgPath
+		from t_picture_score scoreInfo join t_user_pkimg
+		pictureInfo on pictureInfo.picId = scoreInfo.picId
+		join t_user userInfo
+		on userInfo.userId = pictureInfo.userId
+		GROUP BY scoreInfo.picId
+		order
+		by totalScore desc
+	</select>
+
+	<!-- 获取个人最佳得分明细 -->
+	<select id="queryUserBestRankInfos" resultType="com.imgpkservice.bean.PictureScoreInfo">
+		select
+		scoreInfo.picId, colour, shadow,
+		size, activity, theme,
+		multiple,sum(colour+shadow+size+activity+theme+multiple) as
+		totalScore,
+		userName
+		from t_picture_score scoreInfo join t_user_pkimg
+		pictureInfo on pictureInfo.picId = scoreInfo.picId
+		join t_user userInfo
+		on userInfo.userId = pictureInfo.userId
+		where userInfo.userId =
+		#{userId}
+        GROUP by picId
+		order by totalScore desc
+		limit 0,1
 	</select>
 </mapper>

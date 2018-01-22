@@ -3,6 +3,7 @@ package com.imgpkservice.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.ResponseEntity;
@@ -35,19 +36,27 @@ public class UserController {
 	}
 
 	@ResponseBody
-	@RequestMapping(method = RequestMethod.POST, value = "/saveUserInfo", produces = { "application/json;charset=UTF-8" })
+	@RequestMapping(method = RequestMethod.POST, value = "/saveUserInfo", produces = {
+			"application/json;charset=UTF-8" })
 	public int addUser(HttpServletRequest request) {
-	    User user = new User();
-	    user.setUserId(request.getParameter("userId"));
-	    user.setImgPath(request.getParameter("avatarUrl"));
-	    user.setUserName(request.getParameter("nickName"));
+		User user = new User();
+		user.setUserId(request.getParameter("userId"));
+		user.setImgPath(request.getParameter("avatarUrl"));
+		user.setUserName(request.getParameter("nickName"));
+		
+		if(StringUtils.isEmpty(user.getUserId()))
+		{
+			return 0; 
+		}
 		return userService.addUser(user);
 	}
 
 	@ResponseBody
-	@RequestMapping(method = RequestMethod.POST, value = "/all", produces = { "application/json;charset=UTF-8" })
-	public String findAllUser(@RequestParam("pageNum") int pageNum, @RequestParam("pageSize") int pageSize) {
-		return new Gson().toJson(userService.findAllUser(pageNum, pageSize));
+	@RequestMapping(method = RequestMethod.POST, value = "/queryAllRankInfos", produces = {
+			"application/json;charset=UTF-8" })
+	public String queryAllRankInfos(@RequestParam("pageNum") int pageNum, @RequestParam("pageSize") int pageSize) {
+		
+		return new Gson().toJson(userService.queryAllRankInfos(pageNum, pageSize));
 	}
 
 	/**
@@ -76,5 +85,12 @@ public class UserController {
 		} catch (Exception e) {
 			return ResponseEntity.notFound().build();
 		}
+	}
+
+	@ResponseBody
+	@RequestMapping(method = RequestMethod.POST, value = "/showMyBestDetails", produces = {
+			"application/json;charset=UTF-8" })
+	public String showMyBestDetails(@RequestParam("userId") String userId) {
+		return new Gson().toJson(userService.showMyBestDetails(userId));
 	}
 }

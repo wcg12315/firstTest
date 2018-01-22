@@ -7,7 +7,7 @@
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
     </block>
   </view>
-  <button bindtap="showMyDetails"> 我的评分 </button>
+  <!-- <button bindtap="showMyDetails"> 我的评分 </button>
   <button bindtap="gotoImgDemo"> 选择图片 </button>
-  <button bindtap="gotoPkList"> 查看排行榜 </button>
+  <button bindtap="gotoPkList"> 查看排行榜 </button> -->
 </view>

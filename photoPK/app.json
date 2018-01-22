@@ -1,15 +1,45 @@
 {
-  "pages":[
+  "pages": [
     "pages/index/index",
     "pages/logs/logs",
     "pages/imgShow/imgShow",
     "pages/showMyDetails/showMyDetails",
     "pages/detailList/detailList"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color" : "#cdcdcd",
+    "selectedColor" : "#1afa29",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "pages/images/home.png",
+        "selectedIconPath": "pages/images/homeSelect.png"
+      },
+      {
+        "pagePath": "pages/showMyDetails/showMyDetails",
+        "text": "评分",
+        "iconPath": "pages/images/pingfen.png",
+        "selectedIconPath": "pages/images/pingfenSelect.png"
+      },
+      {
+        "pagePath": "pages/imgShow/imgShow",
+        "text": "图片",
+        "iconPath": "pages/images/picture.png",
+        "selectedIconPath": "pages/images/pictureSelect.png"
+      },
+      {
+        "pagePath": "pages/detailList/detailList",
+        "text": "排行榜",
+        "iconPath": "pages/images/paihang.png",
+        "selectedIconPath": "pages/images/paihangSelect.png"
+      }
+    ]
   }
 }

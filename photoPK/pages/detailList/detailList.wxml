@@ -1,41 +1,15 @@
-<view class='wrap'>
-  <view class='singlePersion'>
-    <view class='wrap-inner'>
-      <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}"></image>
-      <p class="userinfo-name">{{userInfo.nickName}}</p>
+<view class="container">
+  <scroll-view scroll-top="{{scrollTop}}" scroll-y="true" style="height:{{scrollHeight}}px;" class="list" bindscrolltolower="bindDownLoad" bindscroll="scroll" bindscrolltoupper="refresh">
+    <view class="item" wx:for="{{list}}">
+      <p class="userinfo-name">{{item.userName}}</p>
+      <image class="img" src="{{item.imgPath}}"></image>
+      <view class='wrap-inner'>
+      </view>
     </view>
-  </view>
-  <view class='singlePersion'>
-    <view class='wrap-inner'>
-      <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}"></image>
-      <p class="userinfo-name">{{userInfo.nickName}}</p>
-    </view>
-  </view>
-
-  <view class='singlePersion'>
-    <view class='wrap-inner'>
-      <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}"></image>
-      <p class="userinfo-name">{{userInfo.nickName}}</p>
-    </view>
-  </view>
-  <view class='singlePersion'>
-    <view class='wrap-inner'>
-      <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}"></image>
-      <p class="userinfo-name">{{userInfo.nickName}}</p>
-    </view>
-  </view>
-  <view class='singlePersion'>
-    <view class='wrap-inner'>
-      <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}"></image>
-      <p class="userinfo-name">{{userInfo.nickName}}</p>
-    </view>
-  </view>
-
-  <view class='singlePersion'>
-    <view class='wrap-inner'>
-      <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}"></image>
-      <p class="userinfo-name">{{userInfo.nickName}}</p>
-    </view>
-
+  </scroll-view>
+  <view class="body-view">
+    <loading hidden="{{hidden}}" bindchange="loadingChange">
+      加载中...
+    </loading>
   </view>
 </view>

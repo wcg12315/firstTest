@@ -1,8 +1,9 @@
 <view class="container">
   <view>
-    <button type="default" bindtap="gotoShow">点击上传照片</button>
+    <image class="show-image" mode="widthFix" src="{{imgPath}}"></image>
   </view>
-  <view>
-    <image class="show-image" mode="widthFix" src="" ></image>
+
+  <view class="myRadarPicWrap">
+    <canvas canvas-id="myRadarPic" style="height : 300px; widht : {{windowWidth}}" disable-scroll="true" class="canvas"></canvas>
   </view>
 </view>

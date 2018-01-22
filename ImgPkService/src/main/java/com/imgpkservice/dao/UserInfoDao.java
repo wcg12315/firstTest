@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.imgpkservice.bean.PictureInfo;
+import com.imgpkservice.bean.PictureScoreInfo;
 import com.imgpkservice.bean.User;
 
 public interface UserInfoDao {
@@ -47,4 +48,24 @@ public interface UserInfoDao {
 	 * @return
 	 */
 	List<PictureInfo> queryPictureInfoById(Map<String, Object> filters);
+
+	/**
+	 * 获取排行榜
+	 * @return
+	 */
+	List<PictureScoreInfo> queryAllRankInfos();
+
+	/**
+	 * 保存用户图片
+	 * @param record
+	 * @return
+	 */
+	int savePictureScoreInfo(PictureScoreInfo record);
+
+	/**
+	 * 获取当前用户的最佳得分明细
+	 * @param filters
+	 * @return
+	 */
+	List<PictureScoreInfo> queryUserBestRankInfos(Map<String, Object> filters);
 }
