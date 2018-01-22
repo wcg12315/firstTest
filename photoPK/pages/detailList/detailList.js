@@ -2,6 +2,7 @@ const app = getApp()
 
 Page({
   onLoad: function () {
+    var that = this
     wx.request({
       url: 'http://127.0.0.1:8080/ImgPkService/user/all?pageNum=3&pageSize=2',
       method: 'POST',
@@ -11,7 +12,7 @@ Page({
       },
       success: function (res) {
         if (app.globalData.userInfo) {
-          this.setData({
+          that.setData({
             userInfo: app.globalData.userInfo,
             hasUserInfo: true
           })
