@@ -1,0 +1,29 @@
+page {
+  background: #f1f0f7;
+}
+
+.singlePersion {
+  padding-left : 10rpx;
+  background-color: #fff;
+  height: 120rpx;
+  margin-bottom : 10rpx;
+}
+
+.singlePersion>.wrap-inner{
+  /* border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee; */
+}
+
+.userinfo-avatar {
+  width: 96rpx;
+  height: 96rpx;
+  margin: 10rpx;
+  float: left;
+}
+
+p.userinfo-name{
+  float : left;
+  font-size : 24rpx;
+  padding:10px;
+
+}

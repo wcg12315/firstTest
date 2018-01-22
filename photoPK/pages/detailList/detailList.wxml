@@ -1,0 +1,41 @@
+<view class='wrap'>
+  <view class='singlePersion'>
+    <view class='wrap-inner'>
+      <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}"></image>
+      <p class="userinfo-name">{{userInfo.nickName}}</p>
+    </view>
+  </view>
+  <view class='singlePersion'>
+    <view class='wrap-inner'>
+      <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}"></image>
+      <p class="userinfo-name">{{userInfo.nickName}}</p>
+    </view>
+  </view>
+
+  <view class='singlePersion'>
+    <view class='wrap-inner'>
+      <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}"></image>
+      <p class="userinfo-name">{{userInfo.nickName}}</p>
+    </view>
+  </view>
+  <view class='singlePersion'>
+    <view class='wrap-inner'>
+      <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}"></image>
+      <p class="userinfo-name">{{userInfo.nickName}}</p>
+    </view>
+  </view>
+  <view class='singlePersion'>
+    <view class='wrap-inner'>
+      <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}"></image>
+      <p class="userinfo-name">{{userInfo.nickName}}</p>
+    </view>
+  </view>
+
+  <view class='singlePersion'>
+    <view class='wrap-inner'>
+      <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}"></image>
+      <p class="userinfo-name">{{userInfo.nickName}}</p>
+    </view>
+
+  </view>
+</view>

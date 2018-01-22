@@ -25,6 +25,12 @@ Page({
     wx.navigateTo({
       url: '../showMyDetails/showMyDetails'
     })
+  }, 
+  //事件处理函数
+  gotoPkList: function() {
+    wx.navigateTo({
+      url: '../detailList/detailList'
+    })
   },
   onLoad: function () {
     if (app.globalData.userInfo) {

@@ -16,20 +16,6 @@ Page({
         _this.setData({
           src: res.tempFilePaths
         });
-         wx.request({
-           url: 'http://127.0.0.1:8080/ImgPkService/user/all?pageNum=3&pageSize=2',
-          method: 'POST',
-          data: {},
-          header: {
-            'content-type': 'application/x-www-form-urlencoded'
-          },
-          success: function (res) {
-            console.log(res);
-          },
-          fail: function (res) {
-            console.log(res)
-          }
-        });
          var userInfo = app.globalData.userInfo;
          console.log(userInfo)
         wx.uploadFile({

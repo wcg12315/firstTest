@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/logs/logs",
     "pages/imgShow/imgShow",
-    "pages/showMyDetails/showMyDetails"
+    "pages/showMyDetails/showMyDetails",
+    "pages/detailList/detailList"
   ],
   "window":{
     "backgroundTextStyle":"light",
