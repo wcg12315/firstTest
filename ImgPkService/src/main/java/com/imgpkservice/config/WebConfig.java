@@ -19,7 +19,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 public class WebConfig {
-	/*@Bean
+	@Bean
 	public EmbeddedServletContainerCustomizer containerCustomizer() {
 		return new EmbeddedServletContainerCustomizer() {
 			@Override
@@ -59,5 +59,5 @@ public class WebConfig {
 		connector.setPort(8080);
 		connector.setRedirectPort(8443);
 		return connector;
-	}*/
+	}
 }
