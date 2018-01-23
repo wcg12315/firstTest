@@ -59,7 +59,7 @@ App({
                     //更新用户信息
                     wx.request({
                       //获取openid接口
-                      url: 'http://127.0.0.1:8080/ImgPkService/user/saveUserInfo',
+                      url: this.globalData.REST_SERVICE + 'user/saveUserInfo',
                       data: { userId: userInfoObj.userId, avatarUrl: userInfoObj.avatarUrl, nickName: userInfoObj.nickName },
                       method: 'POST',
                       header: {
@@ -81,6 +81,7 @@ App({
   globalData: {
     userInfo: null,
     OPEN_ID: null,
-    SESSION_KEY: null
+    SESSION_KEY: null,
+    REST_SERVICE: "http://127.0.0.1:8080/ImgPkService/"
   }
 })

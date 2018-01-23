@@ -15,7 +15,7 @@ Page({
     var that = this
     var userInfo = app.globalData.userInfo;
     wx.request({
-      url: 'http://127.0.0.1:8080/ImgPkService/user/showMyBestDetails?userId=' + app.globalData.OPEN_ID,
+      url: app.globalData.REST_SERVICE + 'user/showMyBestDetails?userId=' + app.globalData.OPEN_ID,
       method: 'POST',
       data: {},
       header: {
@@ -23,7 +23,7 @@ Page({
       },
       success: function (res) {
         that.setData({
-          imgPath: 'http://127.0.0.1:8080/ImgPkService/user/' + res.data.picId
+          imgPath: app.globalData.REST_SERVICE + 'user/' + res.data.picId
         });
         
         new Charts({

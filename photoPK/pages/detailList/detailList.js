@@ -1,4 +1,6 @@
-var url = "http://127.0.0.1:8080/ImgPkService/user/queryAllRankInfos";
+const app = getApp()
+
+var url = app.globalData.REST_SERVICE + 'user/queryAllRankInfos';
 var page = 0;
 var page_size = 20;
 var sort = "last";

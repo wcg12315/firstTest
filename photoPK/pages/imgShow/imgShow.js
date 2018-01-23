@@ -24,7 +24,7 @@ Page({
         var userInfo = app.globalData.userInfo;
         console.log(userInfo)
         wx.uploadFile({
-          url: 'http://127.0.0.1:8080/ImgPkService/user/upload',
+          url: app.globalData.REST_SERVICE + 'user/upload',
           filePath: res.tempFilePaths[0],　//待上传的图片，由 chooseImage获得
           name: 'pk_image',
           formData: {
