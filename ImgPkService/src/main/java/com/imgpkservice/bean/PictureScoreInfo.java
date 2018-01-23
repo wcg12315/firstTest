@@ -1,5 +1,10 @@
 package com.imgpkservice.bean;
 
+/**
+ * 照片评分Bean
+ * @author Administrator
+ *
+ */
 public class PictureScoreInfo {
 	private String picId;
 	private String userName;

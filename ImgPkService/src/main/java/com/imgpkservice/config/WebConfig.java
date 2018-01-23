@@ -12,9 +12,14 @@ import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletCon
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * https监听配置
+ * @author Administrator
+ *
+ */
 @Configuration
 public class WebConfig {
-	/*@Bean
+	@Bean
 	public EmbeddedServletContainerCustomizer containerCustomizer() {
 		return new EmbeddedServletContainerCustomizer() {
 			@Override
@@ -54,5 +59,5 @@ public class WebConfig {
 		connector.setPort(8080);
 		connector.setRedirectPort(8443);
 		return connector;
-	}*/
+	}
 }

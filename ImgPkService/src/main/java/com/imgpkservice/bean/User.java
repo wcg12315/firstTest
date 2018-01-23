@@ -1,5 +1,10 @@
 package com.imgpkservice.bean;
 
+/**
+ * 用户Bean
+ * @author Administrator
+ *
+ */
 public class User {
 	private String userId;
 

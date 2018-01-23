@@ -7,6 +7,11 @@ import com.imgpkservice.bean.PictureInfo;
 import com.imgpkservice.bean.PictureScoreInfo;
 import com.imgpkservice.bean.User;
 
+/**
+ * 数据库操作类
+ * @author Administrator
+ *
+ */
 public interface UserInfoDao {
 	/**
 	 * 按照ID删除用户信息

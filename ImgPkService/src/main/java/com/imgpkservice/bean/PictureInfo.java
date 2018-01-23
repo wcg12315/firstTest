@@ -1,5 +1,10 @@
 package com.imgpkservice.bean;
 
+/**
+ * 照片Bean
+ * @author Administrator
+ *
+ */
 public class PictureInfo {
 	private String picId;
 

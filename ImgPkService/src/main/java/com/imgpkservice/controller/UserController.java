@@ -21,6 +21,12 @@ import com.google.gson.Gson;
 import com.imgpkservice.bean.User;
 import com.imgpkservice.service.UserService;
 
+/**
+ * 页面控制中心
+ * 
+ * @author Administrator
+ *
+ */
 @Controller
 @RequestMapping(value = "/user")
 public class UserController {
@@ -35,6 +41,12 @@ public class UserController {
 		this.resourceLoader = resourceLoader;
 	}
 
+	/**
+	 * 用户登陆注册
+	 * 
+	 * @param request
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping(method = RequestMethod.POST, value = "/saveUserInfo", produces = {
 			"application/json;charset=UTF-8" })
@@ -43,19 +55,25 @@ public class UserController {
 		user.setUserId(request.getParameter("userId"));
 		user.setImgPath(request.getParameter("avatarUrl"));
 		user.setUserName(request.getParameter("nickName"));
-		
-		if(StringUtils.isEmpty(user.getUserId()))
-		{
-			return 0; 
+
+		if (StringUtils.isEmpty(user.getUserId())) {
+			return 0;
 		}
 		return userService.addUser(user);
 	}
 
+	/**
+	 * 查询排行榜数据
+	 * 
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping(method = RequestMethod.POST, value = "/queryAllRankInfos", produces = {
 			"application/json;charset=UTF-8" })
 	public String queryAllRankInfos(@RequestParam("pageNum") int pageNum, @RequestParam("pageSize") int pageSize) {
-		
+
 		return new Gson().toJson(userService.queryAllRankInfos(pageNum, pageSize));
 	}
 
@@ -73,8 +91,14 @@ public class UserController {
 		MultipartHttpServletRequest params = ((MultipartHttpServletRequest) request);
 		String userId = params.getParameter("userId");
 		return userService.saveImg(userId, file);
-	}// 显示图片的方法关键 匹配路径像 localhost:8080/b7c76eb3-5a67-4d41-ae5c-1642af3f8746.png
+	}
 
+	/**
+	 * 显示图片的方法关键 匹配路径像 localhost:8080/b7c76eb3-5a67-4d41-ae5c-1642af3f8746.png
+	 * 
+	 * @param filePath
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.GET, value = "/{filePath:.+}")
 	@ResponseBody
 	public ResponseEntity<?> getFile(@PathVariable String filePath) {
@@ -87,6 +111,12 @@ public class UserController {
 		}
 	}
 
+	/**
+	 * 查看我的最佳数据明细
+	 * 
+	 * @param userId
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping(method = RequestMethod.POST, value = "/showMyBestDetails", produces = {
 			"application/json;charset=UTF-8" })
