@@ -16,7 +16,7 @@ import java.util.Map;
 
 import javax.imageio.ImageIO;
 
-import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,13 +30,16 @@ import com.imgpkservice.dao.UserInfoDao;
 import com.imgpkservice.service.UserService;
 
 /**
- * Created by Administrator on 2017/8/16.
+ * 用户服务中心
+ * 
+ * @author Administrator
+ *
  */
 @Service(value = "userService")
 public class UserServiceImpl implements UserService {
 
 	@Autowired
-	private UserInfoDao userInfoDao;// 这里会报错，但是并不会影响
+	private UserInfoDao userInfoDao;
 
 	@Override
 	public int addUser(User user) {
@@ -148,7 +151,7 @@ public class UserServiceImpl implements UserService {
 	public String queryImgPath(String filePath) {
 		Map<String, Object> filters = new HashMap<String, Object>();
 		filters.put("picId", filePath);
-
+		
 		// 根据ID获取本地路径，之后可以快捷呈现出来
 		List<PictureInfo> pictureInfos = userInfoDao.queryPictureInfoById(filters);
 		if (CollectionUtils.isNotEmpty(pictureInfos)) {

@@ -40,7 +40,7 @@ public class UserController {
 	public UserController(ResourceLoader resourceLoader) {
 		this.resourceLoader = resourceLoader;
 	}
-
+	
 	/**
 	 * 用户登陆注册
 	 * 
