@@ -2,16 +2,28 @@ page {
   background: #f1f0f7;
 }
 
-.singlePersion {
-  padding-left : 10rpx;
-  background-color: #fff;
-  height: 120rpx;
-  margin-bottom : 10rpx;
+.container {
+  padding: 0;
 }
 
-.singlePersion>.wrap-inner{
+.singlePersion {
+  padding-left: 10rpx;
+  background-color: #fff;
+  height: 120rpx;
+  margin-bottom: 10rpx;
+}
+
+.singlePersion>.wrap-inner {
   /* border-top: 1px solid #eee;
   border-bottom: 1px solid #eee; */
+}
+
+.clearfix::after, .clearfix::before {
+  content: "";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
 }
 
 .userinfo-avatar {
@@ -21,9 +33,35 @@ page {
   float: left;
 }
 
-p.userinfo-name{
-  float : left;
-  font-size : 24rpx;
-  padding:10px;
+p.userinfo-name {
+  float: left;
+  font-size: 24rpx;
+  padding: 10px;
+}
 
+view.item {
+  height: 100rpx;
+  padding: 10rpx;
+  background-color: #fff;
+}
+
+.item>.wrap-inner {
+  padding-bottom: 8rpx;
+  border-bottom: 1rpx solid #eee;
+}
+
+.wrap-inner>image {
+  width: 96rpx;
+  height: 96rpx;
+  float: left;
+  border-radius: 5rpx;
+}
+
+.paichang {
+  float: right;
+  padding: 20rpx;
+}
+
+.paichang>p {
+  font-weight: 900;
 }

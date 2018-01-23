@@ -4,6 +4,11 @@ const app = getApp()
 Page({
   data: {
   },
+  onLoad: function () {
+    wx.setNavigationBarTitle({
+      title: '门户PK小程序',
+    })
+  },
   gotoShow: function () {
     var _this = this
     wx.chooseImage({
@@ -16,8 +21,8 @@ Page({
         _this.setData({
           src: res.tempFilePaths
         });
-         var userInfo = app.globalData.userInfo;
-         console.log(userInfo)
+        var userInfo = app.globalData.userInfo;
+        console.log(userInfo)
         wx.uploadFile({
           url: 'http://127.0.0.1:8080/ImgPkService/user/upload',
           filePath: res.tempFilePaths[0],　//待上传的图片，由 chooseImage获得

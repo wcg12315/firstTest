@@ -1,9 +1,13 @@
 <view class="container">
   <scroll-view scroll-top="{{scrollTop}}" scroll-y="true" style="height:{{scrollHeight}}px;" class="list" bindscrolltolower="bindDownLoad" bindscroll="scroll" bindscrolltoupper="refresh">
     <view class="item" wx:for="{{list}}">
-      <p class="userinfo-name">{{item.userName}}</p>
-      <image class="img" src="{{item.imgPath}}"></image>
-      <view class='wrap-inner'>
+      <view class='wrap-inner clearfix'>
+        <image class="img" src="{{item.imgPath}}"></image>
+        <p class="userinfo-name">{{item.userName}}</p>
+
+        <view class='paichang paichang_{{index+1}}'>
+          <p>{{index + 1}}</p>
+        </view>
       </view>
     </view>
   </scroll-view>

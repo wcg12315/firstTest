@@ -9,6 +9,9 @@ Page({
     windowWidth: wx.getSystemInfoSync().windowWidth
   },
   onLoad: function () {
+    wx.setNavigationBarTitle({
+      title: '门户PK小程序',
+    })
     var that = this
     var userInfo = app.globalData.userInfo;
     wx.request({
